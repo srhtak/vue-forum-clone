@@ -1,6 +1,7 @@
 <script setup>
 import soureData from "@/data.json";
 import { ref } from "vue";
+import AppDate from "./AppDate.vue";
 
 const props = defineProps(["threads"]);
 const posts = ref(soureData.posts);
@@ -17,7 +18,7 @@ const userById = (userId) => {
       <h2 class="list-title">Threads</h2>
 
       <div v-for="thread in props.threads" :key="thread.id" class="thread">
-        <div>
+        <div class="right-col">
           <p>
             <router-link
               :to="{ name: 'ThreadShow', params: { id: thread.id } }"
@@ -26,7 +27,7 @@ const userById = (userId) => {
           </p>
           <p class="text-faded text-xsmall">
             By <a href="@">{{ userById(thread.userId).name }}</a
-            >, {{ thread.publishedAt }}.
+            >, <AppDate :timestamp="thread.publishedAt" />.
           </p>
         </div>
 
@@ -41,11 +42,13 @@ const userById = (userId) => {
             alt=""
           />
 
-          <div>
+          <div class="right-col">
             <p class="text-xsmall">
-              <a href="profile.html">{{ userById(thread.userId) }}</a>
+              <a href="profile.html">{{ userById(thread.userId).name }}</a>
             </p>
-            <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
+            <p class="text-xsmall text-faded">
+              <AppDate :timestamp="thread.publishedAt" />
+            </p>
           </div>
         </div>
       </div>
@@ -53,4 +56,11 @@ const userById = (userId) => {
   </div>
 </template>
 
-<style lang="scss" scoped></style>
+<style lang="scss" scoped>
+.right-col {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+</style>

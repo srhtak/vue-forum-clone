@@ -1,7 +1,6 @@
 <script setup>
 import { ref } from "vue";
 import soureData from "@/data.json";
-import AppDate from "./AppDate.vue";
 
 const props = defineProps(["posts"]);
 
