@@ -1,63 +1,10 @@
 <script setup>
-import soureData from "@/data.json";
-import { ref } from "vue";
-
-const threads = ref(soureData.threads);
-const posts = ref(soureData.posts);
-const users = ref(soureData.users);
-
-const postById = (postId) => {
-  return posts.value.find((p) => p.id === postId);
-};
-
-const userById = (userId) => {
-  return users.value.find((p) => p.id === userId);
-};
+import ThreadList from "@/components/ThreadList.vue";
 </script>
 
 <template>
-  <div v-for="thread in threads" :key="thread.id" class="col-large push-top">
-    <h1>{{ thread.title }}</h1>
-
-    <div class="post-list">
-      <div v-for="postId in thread.posts" :key="postId" class="post">
-        <div class="user-info">
-          <a href="#" class="user-name">{{
-            userById(postById(postId).userId).name
-          }}</a>
-
-          <a href="#">
-            <img
-              class="avatar-large"
-              :src="userById(postById(postId).userId).avatar"
-              alt=""
-            />
-          </a>
-
-          <p class="desktop-only text-small">107 posts</p>
-        </div>
-
-        <div class="post-content">
-          <div>
-            <p>
-              {{ postById(postId).text }}
-            </p>
-          </div>
-          <a
-            href="#"
-            style="margin-left: auto"
-            class="link-unstyled"
-            title="Make a change"
-            ><i class="fa fa-pencil"></i
-          ></a>
-        </div>
-
-        <div class="post-date text-faded">
-          {{ postById(postId).publishedAt }}
-        </div>
-      </div>
-    </div>
-  </div>
+  <h1>Welcome to the Forum</h1>
+  <ThreadList />
 </template>
 
 <style lang="scss" scoped>
