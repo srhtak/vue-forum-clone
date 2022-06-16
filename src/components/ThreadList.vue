@@ -2,13 +2,9 @@
 import soureData from "@/data.json";
 import { ref } from "vue";
 
-const threads = ref(soureData.threads);
+const props = defineProps(["threads"]);
 const posts = ref(soureData.posts);
 const users = ref(soureData.users);
-
-const postById = (postId) => {
-  return posts.value.find((p) => p.id === postId);
-};
 
 const userById = (userId) => {
   return users.value.find((p) => p.id === userId);
@@ -20,7 +16,7 @@ const userById = (userId) => {
     <div class="thread-list">
       <h2 class="list-title">Threads</h2>
 
-      <div v-for="thread in threads" :key="thread.id" class="thread">
+      <div v-for="thread in props.threads" :key="thread.id" class="thread">
         <div>
           <p>
             <router-link

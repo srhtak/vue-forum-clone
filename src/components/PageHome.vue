@@ -1,10 +1,14 @@
 <script setup>
+import soureData from "@/data.json";
 import ThreadList from "@/components/ThreadList.vue";
+import { ref } from "vue";
+
+const threads = ref(soureData.threads);
 </script>
 
 <template>
   <h1>Welcome to the Forum</h1>
-  <ThreadList />
+  <ThreadList :threads="threads" />
 </template>
 
 <style lang="scss" scoped>
