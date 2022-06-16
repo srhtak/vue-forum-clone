@@ -2,6 +2,7 @@ import { createRouter, createWebHistory } from "vue-router";
 import HomeView from "../views/HomeView.vue";
 import PageThreadShow from "@/components/PageThreadShow.vue";
 import NotFound from "@/components/NotFound.vue";
+import sourceData from "@/data.json";
 
 const routes = [
   {
@@ -14,6 +15,16 @@ const routes = [
     name: "ThreadShow",
     component: PageThreadShow,
     props: true,
+    beforeEnter: (to, from, next) => {
+      const threadExists = sourceData.threads.find(
+        (thread) => thread.id === to.params.id
+      );
+      if (threadExists) {
+        next();
+      } else {
+        next({ name: "NotFound" });
+      }
+    },
   },
   { path: "/:pathMatch(.*)*", name: "NotFound", component: NotFound },
 ];
