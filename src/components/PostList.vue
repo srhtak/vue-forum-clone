@@ -1,66 +1,49 @@
 <script setup>
+import { ref } from "vue";
 import soureData from "@/data.json";
-import { ref, computed } from "vue";
+const props = defineProps(["posts"]);
 
-const props = defineProps(["id"]);
-
-const threads = ref(soureData.threads);
-const posts = ref(soureData.posts);
 const users = ref(soureData.users);
-
-const postById = (postId) => {
-  return posts.value.find((p) => p.id === postId);
-};
 
 const userById = (userId) => {
   return users.value.find((p) => p.id === userId);
 };
-
-const thread = computed(() => {
-  return threads.value.find((thread) => thread.id === props.id);
-});
 </script>
 
 <template>
-  <div class="col-large push-top">
-    <h1>{{ thread.title }}</h1>
+  <div class="post-list">
+    <div v-for="post in posts" :key="post.id" class="post">
+      <div class="user-info">
+        <a href="#" class="user-name">{{ userById(post.userId).name }}</a>
 
-    <div class="post-list">
-      <div v-for="postId in thread.posts" :key="postId" class="post">
-        <div class="user-info">
-          <a href="#" class="user-name">{{
-            userById(postById(postId).userId).name
-          }}</a>
+        <a href="#">
+          <img
+            class="avatar-large"
+            :src="userById(post.userId).avatar"
+            alt=""
+          />
+        </a>
 
-          <a href="#">
-            <img
-              class="avatar-large"
-              :src="userById(postById(postId).userId).avatar"
-              alt=""
-            />
-          </a>
+        <p class="desktop-only text-small">107 posts</p>
+      </div>
 
-          <p class="desktop-only text-small">107 posts</p>
+      <div class="post-content">
+        <div>
+          <p>
+            {{ post.text }}
+          </p>
         </div>
+        <a
+          href="#"
+          style="margin-left: auto"
+          class="link-unstyled"
+          title="Make a change"
+          ><i class="fa fa-pencil"></i
+        ></a>
+      </div>
 
-        <div class="post-content">
-          <div>
-            <p>
-              {{ postById(postId).text }}
-            </p>
-          </div>
-          <a
-            href="#"
-            style="margin-left: auto"
-            class="link-unstyled"
-            title="Make a change"
-            ><i class="fa fa-pencil"></i
-          ></a>
-        </div>
-
-        <div class="post-date text-faded">
-          {{ postById(postId).publishedAt }}
-        </div>
+      <div class="post-date text-faded">
+        {{ post.publishedAt }}
       </div>
     </div>
   </div>
