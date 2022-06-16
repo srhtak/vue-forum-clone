@@ -1,9 +1,7 @@
 <script setup>
 import soureData from "@/data.json";
 import { ref, computed } from "vue";
-import { useRoute } from "vue-router";
 
-const route = useRoute();
 const props = defineProps(["id"]);
 
 const threads = ref(soureData.threads);

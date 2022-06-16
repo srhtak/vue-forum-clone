@@ -43,7 +43,7 @@ const userById = (userId) => {
 
           <div>
             <p class="text-xsmall">
-              <a href="profile.html">{{ userById(thread, userId) }}</a>
+              <a href="profile.html">{{ userById(thread.userId) }}</a>
             </p>
             <p class="text-xsmall text-faded">{{ thread.publishedAt }}</p>
           </div>

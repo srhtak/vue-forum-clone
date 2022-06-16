@@ -1,5 +1,5 @@
 <script setup>
-import PageHome from "../components/PageHome.vue";
+import PageHome from "../views/PageHome.vue";
 </script>
 
 <template>
