@@ -1,7 +1,6 @@
 <script setup>
 import soureData from "@/data.json";
 import { ref } from "vue";
-import AppDate from "./AppDate.vue";
 
 const props = defineProps(["threads"]);
 const posts = ref(soureData.posts);
