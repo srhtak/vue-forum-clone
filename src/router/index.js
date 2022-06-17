@@ -5,6 +5,7 @@ import Forum from "@/views/Forum";
 import NotFound from "@/views/NotFound.vue";
 import sourceData from "@/data.json";
 import Category from "@/views/Category.vue";
+import Profile from "@/views/Profile.vue";
 
 const routes = [
   {
@@ -17,6 +18,11 @@ const routes = [
     name: "Category",
     component: Category,
     props: true,
+  },
+  {
+    path: "/profile",
+    name: "Profile",
+    component: Profile,
   },
   {
     path: "/forum/:id",

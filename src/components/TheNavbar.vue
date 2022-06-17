@@ -21,7 +21,7 @@ const source = useData();
     <nav class="navbar">
       <ul>
         <li class="navbar-user">
-          <a href="#">
+          <router-link :to="{ name: 'Profile' }">
             <img
               class="avatar-small"
               :src="source.authUser.avatar"
@@ -35,7 +35,7 @@ const source = useData();
                 alt=""
               />
             </span>
-          </a>
+          </router-link>
 
           <!-- dropdown menu -->
           <!-- add class "active-drop" to show the dropdown -->
