@@ -9,8 +9,32 @@ export const useData = defineStore({
     };
   },
   getters: {
-    authUser: (state) =>
-      state.data.users.find((user) => user.id === state.authId),
+    authUser: (state) => {
+      const user = state.data.users.find((user) => user.id === state.authId);
+
+      if (!user) return null;
+
+      return {
+        ...user,
+        get Posts() {
+          return state.data.posts.filter((post) => post.userId === user.id);
+        },
+
+        get PostsCount() {
+          return this.Posts.length;
+        },
+
+        get Threads() {
+          return state.data.threads.filter(
+            (thread) => thread.userId === user.id
+          );
+        },
+
+        get ThreadsCount() {
+          return this.Threads.length;
+        },
+      };
+    },
   },
   actions: {
     createPost(post) {
