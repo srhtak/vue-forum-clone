@@ -1,14 +1,14 @@
 <script setup>
 import soureData from "@/data.json";
-import ThreadList from "@/components/ThreadList.vue";
+import ForumList from "@/components/ForumList.vue";
 import { ref } from "vue";
 
-const threads = ref(soureData.threads);
+const forums = ref(soureData.forums);
 </script>
 
 <template>
   <h1>Welcome to the Forum</h1>
-  <ThreadList :threads="threads" />
+  <ForumList :forums="forums" />
 </template>
 
 <style lang="scss" scoped>
