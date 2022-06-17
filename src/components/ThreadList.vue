@@ -1,6 +1,6 @@
 <script setup>
 import { useData } from "@/store/index";
-
+import { computed } from "vue";
 const source = useData();
 
 const props = defineProps(["threads"]);
