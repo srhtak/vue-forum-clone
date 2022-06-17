@@ -4,12 +4,19 @@ import ThreadShow from "@/views/ThreadShow";
 import Forum from "@/views/Forum";
 import NotFound from "@/views/NotFound.vue";
 import sourceData from "@/data.json";
+import Category from "@/views/Category.vue";
 
 const routes = [
   {
     path: "/",
     name: "Home",
     component: Home,
+  },
+  {
+    path: "/category/:id",
+    name: "Category",
+    component: Category,
+    props: true,
   },
   {
     path: "/forum/:id",

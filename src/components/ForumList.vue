@@ -1,5 +1,5 @@
 <script setup>
-const props = defineProps(["forums"]);
+const props = defineProps(["forums", "title", "categoryId"]);
 
 const forumThreadWords = (forum) => {
   if (forum.threads?.length) {
@@ -14,7 +14,10 @@ const forumThreadWords = (forum) => {
   <div class="col-full">
     <div class="forum-list">
       <h2 class="list-title">
-        <a href="#">Feedback &amp; Information</a>
+        <router-link
+          :to="{ name: 'Category', params: { id: props.categoryId } }"
+          >{{ props.title }}</router-link
+        >
       </h2>
 
       <div class="forum-listing" v-for="forum in props.forums" :key="forum.id">
