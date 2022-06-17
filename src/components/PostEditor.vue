@@ -5,9 +5,7 @@ const emit = defineEmits();
 const newPostText = ref("");
 
 const save = () => {
-  const postId = "ggg" + Math.random();
   const post = {
-    id: postId,
     text: newPostText.value,
     publishedAt: Math.floor(Date.now() / 1000),
     userId: "L664y3qZSubDbT1R6npC0EEybJ73",
