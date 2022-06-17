@@ -1,4 +1,8 @@
-<script setup></script>
+<script setup>
+import { useData } from "@/store/index";
+
+const source = useData();
+</script>
 
 <template>
   <header class="header" id="header">
@@ -20,11 +24,11 @@
           <a href="#">
             <img
               class="avatar-small"
-              src="https://pbs.twimg.com/profile_images/1188775562657091594/5mgkg44t_400x400.jpg"
-              alt=""
+              :src="source.authUser.avatar"
+              :alt="`${source.authUser.name}`"
             />
             <span>
-              Alex Kyriakidis
+              {{ source.authUser.name }}
               <img
                 class="icon-profile"
                 src="assets/img/svg/arrow-profile.svg"
