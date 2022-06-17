@@ -1,15 +1,17 @@
 <script setup>
 import ForumList from "@/components/ForumList.vue";
-import sourceData from "@/data.json";
 import { computed } from "@vue/reactivity";
+import { useData } from "@/store/index";
+
+const source = useData();
 const props = defineProps(["id"]);
 
 const category = computed(() => {
-  return sourceData.categories.find((category) => category.id === props.id);
+  return source.data.categories.find((category) => category.id === props.id);
 });
 
 const getForumsForCategory = (category) => {
-  return sourceData.forums.filter((forum) => forum.categoryId === category.id);
+  return source.data.forums.filter((forum) => forum.categoryId === category.id);
 };
 console.log(category);
 </script>
