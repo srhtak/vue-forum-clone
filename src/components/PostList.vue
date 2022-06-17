@@ -1,10 +1,14 @@
 <script setup>
 import { ref } from "vue";
-import soureData from "@/data.json";
+import { useData } from "@/store/index";
+
+const source = useData();
 
 const props = defineProps(["posts"]);
 
-const users = ref(soureData.users);
+const users = computed(() => {
+  return source.data.users;
+});
 
 const userById = (userId) => {
   return users.value.find((p) => p.id === userId);
@@ -13,7 +17,7 @@ const userById = (userId) => {
 
 <template>
   <div class="post-list">
-    <div v-for="post in posts" :key="post.id" class="post">
+    <div v-for="post in props.posts" :key="post.id" class="post">
       <div class="user-info">
         <a href="#" class="user-name">{{ userById(post.userId).name }}</a>
 

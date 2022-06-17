@@ -1,10 +1,13 @@
 <script setup>
-import soureData from "@/data.json";
-import { ref } from "vue";
+import { useData } from "@/store/index";
+
+const source = useData();
 
 const props = defineProps(["threads"]);
-const posts = ref(soureData.posts);
-const users = ref(soureData.users);
+
+const users = computed(() => {
+  return source.data.users;
+});
 
 const userById = (userId) => {
   return users.value.find((p) => p.id === userId);

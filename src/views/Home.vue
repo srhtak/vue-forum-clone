@@ -1,12 +1,10 @@
 <script setup>
-import soureData from "@/data.json";
 import CategoryList from "@/components/CategoryList.vue";
-import { ref, computed } from "vue";
+import { computed } from "vue";
 import { useData } from "@/store/index";
 
 const source = useData();
-console.log(source.data.categories);
-//const categories = ref(source.data.categories);
+
 const categories = computed(() => {
   return source.data.categories;
 });

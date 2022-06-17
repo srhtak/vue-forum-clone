@@ -1,16 +1,18 @@
 <script setup>
 import ThreadList from "@/components/ThreadList.vue";
-import sourceData from "@/data.json";
-import { computed, ref } from "vue";
+import { computed } from "vue";
+import { useData } from "@/store/index";
+
+const source = useData();
 
 const props = defineProps(["id"]);
 
 const forum = computed(() => {
-  return sourceData.forums.find((forum) => forum.id === props.id);
+  return source.data.forums.find((forum) => forum.id === props.id);
 });
 
 const filterThreads = computed(() => {
-  return sourceData.threads.filter((thread) => thread.forumId === props.id);
+  return source.data.threads.filter((thread) => thread.forumId === props.id);
 });
 </script>
 

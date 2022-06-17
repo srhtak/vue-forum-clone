@@ -1,13 +1,19 @@
 <script setup>
-import soureData from "@/data.json";
-import { ref, computed } from "vue";
+import { useData } from "@/store/index";
+import { computed } from "vue";
 import PostList from "../components/PostList.vue";
 import PostEditor from "../components/PostEditor.vue";
 
+const source = useData();
 const props = defineProps(["id"]);
 
-const threads = ref(soureData.threads);
-const posts = ref(soureData.posts);
+const threads = computed(() => {
+  return source.data.threads;
+});
+
+const posts = computed(() => {
+  return source.data.posts;
+});
 
 const thread = computed(() => {
   return threads.value.find((thread) => thread.id === props.id);
