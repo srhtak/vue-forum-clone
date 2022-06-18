@@ -1,8 +1,8 @@
 <script setup>
 import { useData } from "@/store/index";
 import PostList from "@/components/PostList.vue";
-import { computed } from "vue";
 import UserProfileCard from "@/components/UserProfileCard.vue";
+import UserProfileCardEditor from "@/components/UserProfileCardEditor.vue";
 
 const source = useData();
 </script>
@@ -12,6 +12,7 @@ const source = useData();
     <div class="flex-grid">
       <div class="col-3 push-top">
         <UserProfileCard :user="source.authUser" />
+        <UserProfileCardEditor :user="source.authUser" />
         <p class="text-xsmall text-faded text-center">
           Member since june 2003, last visited 4 hours ago
         </p>

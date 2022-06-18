@@ -42,6 +42,13 @@ export const useData = defineStore({
       this.data.posts.push(post);
       this.appendPostToThread(post.id, post.threadId);
     },
+    setUser(user) {
+      const userIndex = this.data.users.findIndex(
+        (user) => user.id === this.authId
+      );
+      this.data.users[userIndex] = user;
+    },
+
     appendPostToThread(postId, threadId) {
       const thread = this.data.threads.find((thread) => thread.id === threadId);
       thread.posts.push(postId);
