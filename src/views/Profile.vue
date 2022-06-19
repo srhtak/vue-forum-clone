@@ -1,13 +1,10 @@
 <script setup>
-import { ref } from "vue";
 import { useData } from "@/store/index";
 import PostList from "@/components/PostList.vue";
 import UserProfileCard from "@/components/UserProfileCard.vue";
 import UserProfileCardEditor from "@/components/UserProfileCardEditor.vue";
-import { useRoute } from "vue-router";
 
 const source = useData();
-const route = useRoute();
 
 const props = defineProps({
   edit: {
@@ -15,8 +12,6 @@ const props = defineProps({
     default: false,
   },
 });
-
-console.log(props.edit);
 </script>
 
 <template>
