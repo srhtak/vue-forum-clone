@@ -1,14 +1,22 @@
 <script setup>
 import { ref } from "vue";
 import { useData } from "@/store/index";
-const props = defineProps(["user"]);
+import { useRouter } from "vue-router";
 
+const router = useRouter();
+
+const props = defineProps(["user"]);
 const source = useData();
 
 const activeUser = ref({ ...props.user });
 
 const save = () => {
   source.setUser({ ...activeUser.value });
+  router.push({ name: "Profile" });
+};
+
+const cancel = () => {
+  router.push({ name: "Profile" });
 };
 </script>
 
@@ -89,7 +97,7 @@ const save = () => {
       </div>
 
       <div class="btn-group space-between">
-        <button class="btn-ghost">Cancel</button>
+        <button @click="cancel" class="btn-ghost">Cancel</button>
         <button type="submit" class="btn-blue">Save</button>
       </div>
     </form>

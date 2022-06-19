@@ -1,27 +1,42 @@
 <script setup>
+import { ref } from "vue";
 import { useData } from "@/store/index";
 import PostList from "@/components/PostList.vue";
 import UserProfileCard from "@/components/UserProfileCard.vue";
 import UserProfileCardEditor from "@/components/UserProfileCardEditor.vue";
+import { useRoute } from "vue-router";
 
 const source = useData();
+const route = useRoute();
+
+const props = defineProps({
+  edit: {
+    type: Boolean,
+    default: false,
+  },
+});
+
+console.log(props.edit);
 </script>
 
 <template>
   <div class="container">
     <div class="flex-grid">
       <div class="col-3 push-top">
-        <UserProfileCard :user="source.authUser" />
-        <UserProfileCardEditor :user="source.authUser" />
+        <UserProfileCard v-if="!props.edit" :user="source.authUser" />
+        <UserProfileCardEditor v-else :user="source.authUser" />
         <p class="text-xsmall text-faded text-center">
           Member since june 2003, last visited 4 hours ago
         </p>
 
         <div class="text-center">
           <hr />
-          <a href="edit-profile.html" class="btn-green btn-small"
-            >Edit Profile</a
+          <router-link
+            :to="{ name: 'ProfileEdit' }"
+            class="btn-green btn-small"
           >
+            Edit Profile
+          </router-link>
         </div>
       </div>
 

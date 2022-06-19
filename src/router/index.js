@@ -20,9 +20,15 @@ const routes = [
     props: true,
   },
   {
-    path: "/profile",
+    path: "/me",
     name: "Profile",
     component: Profile,
+  },
+  {
+    path: "/me/edit",
+    name: "ProfileEdit",
+    component: Profile,
+    props: { edit: true },
   },
   {
     path: "/forum/:id",
