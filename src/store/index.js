@@ -44,6 +44,14 @@ export const useData = defineStore({
         this.data.posts.push(post);
       this.appendPostToThread(post.id, post.threadId);
     },
+    createThread(title, forumId) {
+      const id = "ggg" + Math.random();
+      const userId = this.authId;
+      const publishedAt = Math.floor(Date.now() / 1000);
+      const thread = { forumId, title, publishedAt, userId, id };
+      this.data.threads.push(thread);
+      this.appendThreadToForum(forumId, id);
+    },
     setUser(user) {
       const userIndex = this.data.users.findIndex(
         (user) => user.id === this.authId
@@ -53,7 +61,13 @@ export const useData = defineStore({
 
     appendPostToThread(postId, threadId) {
       const thread = this.data.threads.find((thread) => thread.id === threadId);
+      thread.posts = thread.posts || [];
       thread.posts.push(postId);
+    },
+    appendThreadToForum(forumId, threadId) {
+      const forum = this.data.forums.find((forum) => forum.id === forumId);
+      forum.threads = forum.threads || [];
+      forum.threads.push(threadId);
     },
   },
 });
