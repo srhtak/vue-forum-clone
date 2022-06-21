@@ -35,7 +35,7 @@ const userById = (userId) => {
 
         <div class="activity">
           <p class="replies-count">
-            {{ thread.posts.length }}
+            {{ thread.posts?.length || 0 }}
           </p>
 
           <img
