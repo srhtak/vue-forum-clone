@@ -7,8 +7,6 @@ const newPostText = ref("");
 const save = () => {
   const post = {
     text: newPostText.value,
-    publishedAt: Math.floor(Date.now() / 1000),
-    userId: "L664y3qZSubDbT1R6npC0EEybJ73",
   };
   emit("save", { post });
   newPostText.value = "";

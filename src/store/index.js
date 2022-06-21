@@ -39,7 +39,9 @@ export const useData = defineStore({
   actions: {
     createPost(post) {
       post.id = "ggg" + Math.random();
-      this.data.posts.push(post);
+      post.userId = this.authId;
+      (post.publishedAt = Math.floor(Date.now() / 1000)),
+        this.data.posts.push(post);
       this.appendPostToThread(post.id, post.threadId);
     },
     setUser(user) {
