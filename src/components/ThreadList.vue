@@ -12,6 +12,14 @@ const users = computed(() => {
 const userById = (userId) => {
   return users.value.find((p) => p.id === userId);
 };
+
+const threadPostsLength = (thread) => {
+  if (thread.posts.length) {
+    return thread.posts.length;
+  } else {
+    return "no posts";
+  }
+};
 </script>
 
 <template>
