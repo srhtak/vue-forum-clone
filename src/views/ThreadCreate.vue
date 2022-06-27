@@ -16,12 +16,12 @@ const forum = computed(() => {
   return source.data.forums.find((forum) => forum.id === props.forumId);
 });
 
-const save = () => {
+const save = async () => {
   const post = {
     text: content.value,
   };
-  source.createThread(title.value, props.forumId, post);
-  router.push({ name: "Forum", params: { id: props.forumId } });
+  const thread = await source.createThread(title.value, props.forumId, post);
+  router.push({ name: "ThreadShow", params: { id: thread.id } });
 };
 </script>
 

@@ -44,7 +44,7 @@ export const useData = defineStore({
         this.data.posts.push(post);
       this.appendPostToThread(post.id, post.threadId);
     },
-    createThread(title, forumId, post) {
+    async createThread(title, forumId, post) {
       const id = "ggg" + Math.random();
       const userId = this.authId;
       const publishedAt = Math.floor(Date.now() / 1000);
@@ -52,6 +52,7 @@ export const useData = defineStore({
       this.data.threads.push(thread);
       this.appendThreadToForum(forumId, id);
       this.createPost({ ...post, threadId: id });
+      return this.data.threads.find((thread) => thread.id === id);
     },
     setUser(user) {
       const userIndex = this.data.users.findIndex(
