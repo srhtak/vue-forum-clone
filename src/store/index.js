@@ -44,13 +44,14 @@ export const useData = defineStore({
         this.data.posts.push(post);
       this.appendPostToThread(post.id, post.threadId);
     },
-    createThread(title, forumId) {
+    createThread(title, forumId, post) {
       const id = "ggg" + Math.random();
       const userId = this.authId;
       const publishedAt = Math.floor(Date.now() / 1000);
       const thread = { forumId, title, publishedAt, userId, id };
       this.data.threads.push(thread);
       this.appendThreadToForum(forumId, id);
+      this.createPost({ ...post, threadId: id });
     },
     setUser(user) {
       const userIndex = this.data.users.findIndex(

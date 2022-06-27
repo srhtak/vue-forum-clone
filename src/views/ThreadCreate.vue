@@ -17,7 +17,10 @@ const forum = computed(() => {
 });
 
 const save = () => {
-  source.createThread(title.value, props.forumId);
+  const post = {
+    text: content.value,
+  };
+  source.createThread(title.value, props.forumId, post);
   router.push({ name: "Forum", params: { id: props.forumId } });
 };
 </script>
